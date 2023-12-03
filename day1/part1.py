@@ -5,7 +5,7 @@
 ## day1.py
 ##
 
-f = open("day1/day1_input.txt", "r")
+f = open("day1/test.txt", "r")
 
 def line_check(fd, char):
     nb_1 = 0
@@ -34,5 +34,5 @@ def line_loop(fd):
         nb += (line_check(fd, char))
         char = fd.read(1)
     print(nb)
-        
+
 line_loop(f)
