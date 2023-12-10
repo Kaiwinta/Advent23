@@ -11,12 +11,13 @@ f = open("day8/day8_input.txt", "r")
 
 def execute_instruction(intructions, dico):
     len_instruction = len(intructions)
-    actual = dico[[*dico][0]]
+    actual = dico["AAA"]
     nb_step = 0
-    end_conditions = {'ZZZ'}
-    while actual[0] not in end_conditions:
+    while actual[0] != "ZZZ":
+        print(actual, end=' => ')
         actual = dico[actual[1][intructions[nb_step % len_instruction] == 'R']]
         nb_step += 1
+        print(actual[0], nb_step)
     print(nb_step)
 
 def change_in_dico(list_input):
@@ -32,6 +33,7 @@ def main(f):
     f.readline()    #skip the blank line
     list_input = [analyse_line(line[:-1]) for line in f]
     dico = change_in_dico(list_input)
+    print(dico)
     execute_instruction(instructions, dico)
 
 if __name__ == "__main__":
