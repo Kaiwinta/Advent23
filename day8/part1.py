@@ -9,23 +9,18 @@ import cProfile
 
 f = open("day8/day8_input.txt", "r")
 
-def search_next(list_dico, to_find, dico):
-    return list_dico[dico[to_find]]
-
-def execute_instruction(list_dico, intructions, dico):
+def execute_instruction(intructions, dico):
     len_instruction = len(intructions)
-    actual = list_dico[0]
+    actual = dico[[*dico][0]]
     nb_step = 0
     end_conditions = {'ZZZ'}
     while actual[0] not in end_conditions:
-        actual = search_next(list_dico, actual[1][intructions[nb_step % len_instruction] == 'R'], dico)
+        actual = dico[actual[1][intructions[nb_step % len_instruction] == 'R']]
         nb_step += 1
     print(nb_step)
 
 def change_in_dico(list_input):
-    dico = {}
-    for i in range(len(list_input)):
-        dico[str(list_input[i][0])] = i
+    dico = {str(item[0]): [item[0], item[1]] for item in list_input}
     return dico
 
 def analyse_line(actual):
@@ -35,13 +30,9 @@ def analyse_line(actual):
 def main(f):
     instructions = f.readline()[:-1] #Get the instruction line
     f.readline()    #skip the blank line
-    list_input = []
-    actual = f.readline()
-    while actual:
-        list_input.append(analyse_line(actual[:-1]))
-        actual =  f.readline()
+    list_input = [analyse_line(line[:-1]) for line in f]
     dico = change_in_dico(list_input)
-    execute_instruction(list_input, instructions, dico)
+    execute_instruction(instructions, dico)
 
 if __name__ == "__main__":
     main(f)
