@@ -8,16 +8,13 @@
 f = open("day9/day9_input.txt", "r")
 
 def test_on_line(line):
-    # print(line)
     underline = []
     for i in range(0, len(line) - 1):
         underline.append(line[i + 1] - line[i])
     if not all(item == 0 for item in underline):
         underline.insert(0, underline[0] - test_on_line(underline))
-        print(underline)
         return underline[0]
     underline.insert(0, 0)
-    print(underline)
     return underline[0]
 
 def main(f):
@@ -25,7 +22,6 @@ def main(f):
     nb = 0
     for i in list_input:
         nb += i[0] - test_on_line(i)
-        print(i)
     print(nb)
 
 if __name__ == "__main__":
