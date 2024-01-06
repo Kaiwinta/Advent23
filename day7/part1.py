@@ -28,9 +28,34 @@ def check_single_hand(card):
         return 2
     return 1
 
+def sorting()
+
 def check_hand(list_input):
+    list_five = []
+    list_four = []
+    list_full = []
+    list_tree = []
+    list_two_pair = []
+    list_pair = []
+    list_nothing = []
     for i in range(len(list_input)):
         list_input[i]["hand"] = check_single_hand(list_input[i]["card"])
+        if list_input[i]["hand"] == 7:
+            list_five.append(list_input[i])
+        if list_input[i]["hand"] == 6:
+            list_four.append(list_input[i])
+        if list_input[i]["hand"] == 5:
+            list_full.append(list_input[i])
+        if list_input[i]["hand"] == 4:
+            list_tree.append(list_input[i])
+        if list_input[i]["hand"] == 3:
+            list_two_pair.append(list_input[i])
+        if list_input[i]["hand"] == 2:
+            list_pair.append(list_input[i])
+        if list_input[i]["hand"] == 1:
+            list_nothing.append(list_input[i])
+    list_five = sorted(list_five, key=lambda x: x['card'], reverse=True)
+
 
 
 def main(f):
